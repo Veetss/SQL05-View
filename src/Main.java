@@ -9,7 +9,7 @@ public class Main {
 
         try {
             String db_url = "jdbc:mysql://localhost:3306/newdb";
-            String user = "root";
+            String user = "developer";
             String password = "Password!";
 
             con = DriverManager.getConnection(db_url, user, password);
