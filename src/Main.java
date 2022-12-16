@@ -27,14 +27,14 @@ public class Main {
 
             System.out.println("Table created.");
 
-            s.execute("insert into student (last_name,first_name) value (\"Boukoti\", \"Ismail\");");
-            s.execute("insert into student (last_name,first_name) value (\"Vassarotti\", \"Vittoria\");");
-            s.execute("insert into student (last_name,first_name) value (\"De Fenzo\", \"Marco\");");
-            s.execute("insert into student (last_name,first_name) value (\"Mustata\", \"Elena Alina\");");
+            s.executeUpdate("insert into student (last_name,first_name) value (\"Boukoti\", \"Ismail\");"); // meglio usare execute update a meno che non sia una SELECT
+            s.executeUpdate("insert into student (last_name,first_name) value (\"Vassarotti\", \"Vittoria\");");
+            s.executeUpdate("insert into student (last_name,first_name) value (\"De Fenzo\", \"Marco\");");
+            s.executeUpdate("insert into student (last_name,first_name) value (\"Mustata\", \"Elena Alina\");");
 
             System.out.println("Students added to table.");
 
-            ResultSet rs = s.executeQuery("SELECT first_name, last_name FROM newdb.student");
+            ResultSet rs = s.executeQuery("SELECT first_name, last_name FROM newdb.student"); //distinct rileva solo i casi "unici"
 
             while(rs.next())
             {
@@ -74,7 +74,9 @@ public class Main {
                 italianStudent.add(new Student(rs1.getString("first_name"), rs1.getString("last_name")));
             }
 
-            System.out.println(italianStudent);
+            for (Student name : italianStudent) {
+                name.printStudentDetails();
+            }
 
             ResultSet rs2 = s.executeQuery("SELECT first_name, last_name FROM german_students");
 
@@ -84,7 +86,9 @@ public class Main {
                 germanStudent.add(new Student(rs2.getString("first_name"), rs2.getString("last_name")));
             }
 
-            System.out.println(germanStudent);
+            for (Student name : germanStudent) {
+                name.printStudentDetails();
+            }
 
         } catch(SQLException e) {
             System.out.println(e.getMessage());
