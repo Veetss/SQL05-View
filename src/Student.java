@@ -1,2 +1,22 @@
-package PACKAGE_NAME;public class Student {
+public class Student {
+
+    private String name;
+    private String surname;
+
+    public Student(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void printStudentDetails(){
+        System.out.println("Name: " + name + " - surname: " + surname);
+    }
 }
